@@ -1,31 +1,275 @@
 <!DOCTYPE html>
-<!--
-  This file is the entry for ALL routes, including /preview/* canvas iframes.
-  Fonts are loaded here as non-blocking <link> tags (not CSS @import, which is render-blocking).
--->
-<html lang="en" style="height: 100%">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El impacto de las nuevas tecnologías en la sociedad: visualización del futuro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Navegación -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#inicio" class="nav-logo">TecnoFuturo</a>
+      <ul class="nav-links">
+        <li><a href="#contexto" class="nav-link">Contexto</a></li>
+        <li><a href="#tecnologias" class="nav-link">Tecnologías</a></li>
+        <li><a href="#comparacion" class="nav-link">Comparación</a></li>
+        <li><a href="#conclusiones" class="nav-link">Conclusiones</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
 
-    <meta property="og:title" content="Mockup Canvas" />
-    <meta property="og:description" content="UI prototyping sandbox with infinite canvas" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mockup Canvas" />
-    <meta name="twitter:description" content="UI prototyping sandbox with infinite canvas" />
+  <!-- Menú Móvil -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#contexto" class="mobile-link">Contexto</a>
+    <a href="#tecnologias" class="mobile-link">Tecnologías</a>
+    <a href="#comparacion" class="mobile-link">Comparación</a>
+    <a href="#conclusiones" class="mobile-link">Conclusiones</a>
+  </div>
 
-    <title>Mockup Canvas</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
-    <!-- Non-blocking font bundle: renders with fallback fonts immediately, swaps in when loaded -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" media="print" onload="this.media='all'"
-          href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Oxanium:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Oxanium:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
-  </head>
-  <body style="height: 100%; margin: 0">
-    <div id="root" style="height: 100%"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- Inicio / Hero -->
+  <header id="inicio" class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">El impacto de las nuevas tecnologías en la sociedad: <span>visualización del futuro</span></h1>
+      <p class="hero-subtitle">Una exposición académica sobre cómo la innovación redefine nuestra existencia, nuestro trabajo y nuestra interacción.</p>
+      <a href="#contexto" class="btn btn-primary">Explorar la investigación</a>
+    </div>
+    <div class="hero-background"></div>
+  </header>
+
+  <main>
+    <!-- Contexto (Problema y Propósito) -->
+    <section id="contexto" class="section context-section">
+      <div class="container">
+        <div class="grid-2-cols">
+          <div class="card context-card">
+            <h2 class="section-title">Descripción del Problema</h2>
+            <p>La adopción acelerada de tecnologías emergentes ha generado una brecha profunda entre la innovación técnica y la adaptación social. Nos enfrentamos a dilemas éticos sin precedentes, desplazamientos laborales inminentes y una reconfiguración total de la privacidad y la interacción humana. La velocidad del cambio supera nuestra capacidad de comprensión colectiva, dejando interrogantes críticos sobre equidad y bienestar.</p>
+          </div>
+          <div class="card context-card primary-card">
+            <h2 class="section-title text-white">Propósito del Proyecto</h2>
+            <p class="text-white-light">Esta investigación busca desmitificar el desarrollo tecnológico, proporcionando un marco de análisis claro y objetivo. El propósito es educar, advertir y preparar a la sociedad académica y civil para anticipar los cambios, maximizar los beneficios colectivos y mitigar los riesgos inherentes de la transición hacia un entorno hiperconectado y automatizado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tecnologías (Categorías con Tabs) -->
+    <section id="tecnologias" class="section technologies-section bg-light">
+      <div class="container">
+        <h2 class="section-title text-center">Ejes Tecnológicos de Transformación</h2>
+        <p class="section-description text-center">Análisis detallado de las cuatro áreas fundamentales que están esculpiendo el mañana.</p>
+        
+        <!-- Tabs de navegación -->
+        <div class="tabs-container">
+          <button class="tab-btn active" data-target="ia">Inteligencia Artificial</button>
+          <button class="tab-btn" data-target="robotica">Robótica</button>
+          <button class="tab-btn" data-target="rvra">Realidad Virtual y Aumentada</button>
+          <button class="tab-btn" data-target="automatizacion">Automatización</button>
+        </div>
+
+        <!-- Contenido de las Tabs -->
+        <div class="tabs-content-wrapper">
+          
+          <!-- IA -->
+          <div class="tab-content active" id="ia">
+            <div class="tech-header">
+              <h3 class="tech-title">Inteligencia Artificial</h3>
+              <p class="tech-desc">Sistemas computacionales diseñados para simular procesos de inteligencia humana, incluyendo aprendizaje, razonamiento y autocorrección.</p>
+            </div>
+            <div class="tech-grid">
+              <div class="tech-detail-card">
+                <h4>Beneficios</h4>
+                <p>Optimización de diagnósticos médicos, eficiencia en procesamiento de datos masivos, personalización educativa y democratización del acceso a información compleja.</p>
+              </div>
+              <div class="tech-detail-card">
+                <h4>Riesgos</h4>
+                <p>Sesgos algorítmicos, vulnerabilidad de datos privados, dependencia cognitiva, desinformación generativa y pérdida de agencia humana en decisiones críticas.</p>
+              </div>
+              <div class="tech-detail-card">
+                <h4>Impacto Social</h4>
+                <p>Reestructuración de la fuerza laboral intelectual. Transición hacia una sociedad donde el valor humano radica en la creatividad y la empatía, no en el procesamiento lógico.</p>
+              </div>
+              <div class="tech-detail-card highlight">
+                <h4>Proyecciones Futuras</h4>
+                <p>Integración de IA General (AGI) capaz de interconectar múltiples dominios del conocimiento. Gobernanza global mediante sistemas de apoyo algorítmico.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Robótica -->
+          <div class="tab-content" id="robotica">
+            <div class="tech-header">
+              <h3 class="tech-title">Robótica Avanzada</h3>
+              <p class="tech-desc">Diseño, construcción y operación de máquinas capaces de ejecutar tareas físicas complejas de forma autónoma o semiautónoma en diversos entornos.</p>
+            </div>
+            <div class="tech-grid">
+              <div class="tech-detail-card">
+                <h4>Beneficios</h4>
+                <p>Reducción drástica de accidentes laborales en industrias de riesgo. Precisión quirúrgica submilimétrica. Asistencia física a poblaciones envejecidas.</p>
+              </div>
+              <div class="tech-detail-card">
+                <h4>Riesgos</h4>
+                <p>Altos costos de implementación generando brechas de productividad. Posibles fallos mecánicos imprevistos en interacciones directas con humanos.</p>
+              </div>
+              <div class="tech-detail-card">
+                <h4>Impacto Social</h4>
+                <p>Disminución del trabajo físico extenuante. Surgimiento de nuevos vínculos afectivos máquina-humano (robótica social). Rediseño del entorno urbano.</p>
+              </div>
+              <div class="tech-detail-card highlight">
+                <h4>Proyecciones Futuras</h4>
+                <p>Robótica bio-integrada y exoesqueletos de uso diario. Sistemas robóticos colaborativos (cobots) que aprenden empíricamente de sus contrapartes humanas.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RV/RA -->
+          <div class="tab-content" id="rvra">
+            <div class="tech-header">
+              <h3 class="tech-title">Realidad Virtual y Aumentada</h3>
+              <p class="tech-desc">Tecnologías inmersivas que superponen información digital sobre el mundo físico (RA) o crean entornos completamente simulados (RV).</p>
+            </div>
+            <div class="tech-grid">
+              <div class="tech-detail-card">
+                <h4>Beneficios</h4>
+                <p>Revolución pedagógica mediante simulación empírica. Tratamientos psicológicos de exposición. Diseño y prototipado espacial sin coste material.</p>
+              </div>
+              <div class="tech-detail-card">
+                <h4>Riesgos</h4>
+                <p>Aislamiento social extremo. Trastornos de despersonalización. Fricción cognitiva al alternar entre la realidad física y simulada de forma constante.</p>
+              </div>
+              <div class="tech-detail-card">
+                <h4>Impacto Social</h4>
+                <p>Desaparición de barreras geográficas para la socialización y colaboración. Redefinición del concepto de "presencia" y "experiencia compartida".</p>
+              </div>
+              <div class="tech-detail-card highlight">
+                <h4>Proyecciones Futuras</h4>
+                <p>El Metaverso persistente. Lentes de contacto de realidad mixta integrando información contextual en tiempo real sobre nuestro campo visual anatómico.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Automatización -->
+          <div class="tab-content" id="automatizacion">
+            <div class="tech-header">
+              <h3 class="tech-title">Hiper-Automatización</h3>
+              <p class="tech-desc">Aplicación sistemática e integral de múltiples tecnologías convergentes para automatizar tantos procesos y tareas empresariales como sea posible.</p>
+            </div>
+            <div class="tech-grid">
+              <div class="tech-detail-card">
+                <h4>Beneficios</h4>
+                <p>Eficiencia logística y operativa sin precedentes. Reducción a cero de errores humanos en tareas repetitivas. Mayor disponibilidad de bienes y servicios básicos.</p>
+              </div>
+              <div class="tech-detail-card">
+                <h4>Riesgos</h4>
+                <p>Desplazamiento laboral masivo a corto y mediano plazo. Concentración extrema de la riqueza en los dueños de infraestructuras automatizadas.</p>
+              </div>
+              <div class="tech-detail-card">
+                <h4>Impacto Social</h4>
+                <p>Transición obligada hacia modelos económicos alternativos (ej. Renta Básica Universal). Crisis de identidad en culturas ligadas fuertemente a la profesión productiva.</p>
+              </div>
+              <div class="tech-detail-card highlight">
+                <h4>Proyecciones Futuras</h4>
+                <p>Cadenas de suministro autónomas globales ("Dark factories"). Sistemas urbanos auto-regulados que gestionan energía y recursos sin intervención humana.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparación Interactiva -->
+    <section id="comparacion" class="section comparison-section">
+      <div class="container">
+        <h2 class="section-title text-center">Matriz Comparativa de Impacto</h2>
+        <p class="section-description text-center">Seleccione dos tecnologías para evaluar sus áreas de intersección e impacto comparado.</p>
+        
+        <div class="compare-controls">
+          <div class="select-group">
+            <label for="tech1">Tecnología A</label>
+            <select id="tech1" class="tech-select">
+              <option value="ia">Inteligencia Artificial</option>
+              <option value="robotica">Robótica</option>
+              <option value="rvra">Realidad Virtual y Aumentada</option>
+              <option value="automatizacion" selected>Automatización</option>
+            </select>
+          </div>
+          <div class="vs-badge">VS</div>
+          <div class="select-group">
+            <label for="tech2">Tecnología B</label>
+            <select id="tech2" class="tech-select">
+              <option value="ia">Inteligencia Artificial</option>
+              <option value="robotica" selected>Robótica</option>
+              <option value="rvra">Realidad Virtual y Aumentada</option>
+              <option value="automatizacion">Automatización</option>
+            </select>
+          </div>
+          <button id="btn-compare" class="btn btn-secondary">Analizar Sinergias</button>
+        </div>
+
+        <div id="compare-result" class="compare-result-box hidden">
+          <!-- Dinámico vía JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusiones -->
+    <section id="conclusiones" class="section conclusions-section bg-light">
+      <div class="container">
+        <h2 class="section-title">Síntesis Académica</h2>
+        <div class="conclusions-grid">
+          
+          <div class="conclusion-block">
+            <h3>Conclusiones Finales</h3>
+            <p>Las tecnologías emergentes no son herramientas neutrales; actúan como catalizadores sociológicos que reescriben los fundamentos de la interacción humana. La convergencia de IA, robótica, inmersión digital y automatización promete resolver crisis globales históricas, pero exige una madurez ética proporcional para evitar futuros distópicos.</p>
+          </div>
+
+          <div class="conclusion-block">
+            <h3>Implicaciones Sociopolíticas</h3>
+            <ul class="styled-list">
+              <li><strong>Gobernanza Tecnológica:</strong> Urgencia de marcos regulatorios internacionales vinculantes.</li>
+              <li><strong>Educación Continua:</strong> Transición de una educación formativa lineal a modelos de aprendizaje perpetuo ("Lifelong learning").</li>
+              <li><strong>Redistribución:</strong> Necesidad inminente de rediseñar los pactos sociales y fiscales ante la devaluación del trabajo manual rutinario.</li>
+            </ul>
+          </div>
+
+          <div class="conclusion-block limitation-block">
+            <h3>Limitaciones del Estudio</h3>
+            <p>Las proyecciones realizadas en esta investigación están sujetas a la volatilidad del desarrollo técnico ("Black swans"). Asimismo, el análisis presenta un sesgo inherente hacia contextos socioeconómicos desarrollados, siendo indispensable realizar estudios focalizados sobre el impacto de estas tecnologías en economías emergentes.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-info">
+        <h3>TecnoFuturo</h3>
+        <p>Proyecto Universitario de Investigación.<br>Visualización de impacto tecnológico en la sociedad contemporánea.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#inicio">Volver al inicio</a>
+        <a href="#contexto">Contexto</a>
+        <a href="#tecnologias">Tecnologías</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Investigación Académica. Para fines educativos.</p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
 </html>
